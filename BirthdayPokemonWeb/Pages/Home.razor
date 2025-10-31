@@ -1,41 +1,102 @@
 ﻿@page "/"
 
-<PageTitle>Find your birthday pokemon!</PageTitle>
-
-<div class="container">
-    <h1>Find your birthday pokemon!</h1>
-
-    <p>Enter your birth date to see which Pokemon corresponds to it!</p>
-
-    <div class="mb-3">
-        <p>This uses dd/mm/yyyy format, but you can switch between dd/mm/yyyy and mm/dd/yyyy below the date input.</p>
-        <DateInput TValue="DateOnly" @bind-Value="@birthday" Placeholder="Select your birth date" />
-    </div>
-
-    <div>
-        <Switch @bind-Value="MonthDayFormat" Label="Switch between Day-Month or Month-Day DateFormat" />
-
-        <p>The current format is: @inputFormat</p>
-    </div>
+<PageTitle>Find your Birthday Pokémon</PageTitle>
 
 
-    @if (string.IsNullOrEmpty(pokemonImageUrl))
-    {
-        <p class="mt-3">Please select your birth date to see your Pokemon!</p>
-    }
-    else
-    {
-        <div class="mt-3">
-            <h3>Your Pokemon is:</h3>
-            <img src="@pokemonImageUrl" alt="Pokemon Image" class="pokemonimage" />
-            <div><span>#@pokedexNumber</span> - <span>@pokemonName</span></div>
+
+<div class="pokemon-page">
+
+
+
+    <div class="pokemon-card shadow">
+
+        <h1 class="text-center mb-3">🎉 Find Your Birthday Pokémon! 🎉</h1>
+
+        <p class="text-center text-muted mb-4">
+            Enter your birth date and let the Pokédex decide your birthday match!
+        </p>
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Choose Your Birth Date</label>
+            <p class="small text-muted">
+                Default format is <strong>dd/mm/yyyy</strong>.
+                You can switch between <strong>dd/mm</strong> and <strong>mm/dd</strong> below.
+            </p>
+
+            <p class="small text-muted">
+                We are not saving any birth data. Your birth date is only used to determine your Pokémon. Also note that we do not uses year information for the calculation.
+                You can find the open source project here: <a class="github-link" href="https://github.com/djinnet/BirthdayPokemon">Github</a>
+            </p>
+
+            <DateInput TValue="DateOnly"
+            @bind-Value="@birthday"
+            Placeholder="Select your birth date"
+            Class="w-100" />
         </div>
-    }
 
-    <div class="btn-pokemon">
-        <Button Class="mt-3" @onclick="OnGetBirthdayPokemonAsync" Color="ButtonColor.Primary" Size="ButtonSize.Large">Show My Pokemon</Button>
+        <div class="format-toggle mb-4">
+            <Switch @bind-Value="MonthDayFormat"
+            Label="Use Month-Day Format (MM/DD)?" />
+            <p class="small text-muted mt-1">
+                Current format: <strong>@inputFormat</strong>
+            </p>
+        </div>
+
+        <div class="text-center">
+            <Button Class="btn-lg mt-3"
+            Color="ButtonColor.Primary"
+            Size="ButtonSize.Large"
+            @onclick="OnGetBirthdayPokemonAsync">
+                Show My Pokémon
+            </Button>
+        </div>
+
+        @if (isLoading)
+        {
+            <div class="pokeball-loader-container">
+                <div class="pokeball-loader"></div>
+                <p class="loading-text">Catching your Pokémon…</p>
+            </div>
+        }
+        else
+        {
+            @if (!string.IsNullOrEmpty(pokemonImageUrl))
+            {
+                <div class="pokemon-result text-center mt-5">
+                    <h3>Your Pokémon is:</h3>
+
+                    <img src="@pokemonImageUrl"
+                         alt="Pokemon Image"
+                         class="pokemon-image shadow" />
+
+                    <div class="mt-3 fs-4">
+                        <span class="fw-bold">#@pokedexNumber</span>
+                        <span>— @pokemonName</span>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrEmpty(calculationDetails))
+                {
+                    <details class="calculation-details mt-4">
+                        <summary class="details-summary">
+                            🔍 Show Detailed Calculation Steps
+                        </summary>
+
+                        <pre class="details-content">
+                            @calculationDetails
+                        </pre>
+                    </details>
+                }
+
+            }
+            else
+            {
+                <p class="text-center text-muted mt-4">
+                    Select your birth date and press the button to discover your Pokémon!
+                </p>
+            }
+        }
+        
+
     </div>
 </div>
-
-
-

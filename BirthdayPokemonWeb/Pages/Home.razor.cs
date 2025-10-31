@@ -21,6 +21,8 @@ namespace BirthdayPokemonWeb.Pages
 
         public bool MonthDayFormat { get; set; } = true;
 
+        private string? calculationDetails;   // holds explanation text
+
         [Inject]
         public IPokemonService PokemonService { get; set; }
 
@@ -34,21 +36,21 @@ namespace BirthdayPokemonWeb.Pages
         {
             isLoading = true;
             IsError = false;
+            calculationDetails = null;
             try
             {
                 FormatType formatUsed = MonthDayFormat ? FormatType.MonthDay : FormatType.DayMonth;
-                int rawNumber = PokemonService.GetBirthdayNumber(birthday, formatUsed);
-                int normalizedDex = PokemonService.NormalizeDexNumber(rawNumber);
-                var pokemonInfo = await PokemonService.GetPokemonInfoByDexAsync(normalizedDex);
-                if (pokemonInfo == null || string.IsNullOrEmpty(pokemonInfo.ImageUrl))
+                (BirthdayPokemonCore.Repo.PokemonInfo? info, string steps) pokemonInfo = await PokemonService.GetBirthdayPokemonInfoAsync(birthday, formatUsed);
+                if (pokemonInfo.info == null || string.IsNullOrEmpty(pokemonInfo.info.ImageUrl))
                 {
                     ErrorMessage = "Pokémon not found.";
                     IsError = true;
                     return;
                 }
-                pokemonName = pokemonInfo.Name;
-                pokemonImageUrl = pokemonInfo.ImageUrl;
-                pokedexNumber = pokemonInfo.DexNumber;
+                pokemonName = pokemonInfo.info.Name;
+                pokemonImageUrl = pokemonInfo.info.ImageUrl;
+                pokedexNumber = pokemonInfo.info.DexNumber;
+                calculationDetails = pokemonInfo.steps;
             }
             catch (Exception ex)
             {
@@ -57,6 +59,7 @@ namespace BirthdayPokemonWeb.Pages
                 pokemonName = string.Empty;
                 pokemonImageUrl = string.Empty;
                 pokedexNumber = 0;
+                calculationDetails = null;
             }
             finally
             {

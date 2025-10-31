@@ -11,6 +11,7 @@ namespace BirthdayPokemonCore
         Task<Dictionary<int, (string Name, int Count)>> GenerateBirthdayPokemonDistributionAsync();
         int GetBirthdayNumber(DateOnly birthday, FormatType formatused = FormatType.DayMonth);
         Task<(int DexNumber, string Name)> GetBirthdayPokemonAsync(DateOnly birthday, FormatType formatType);
+        Task<(PokemonInfo? info, string steps)> GetBirthdayPokemonInfoAsync(DateOnly birthday, FormatType formatType);
         Task<PokemonInfo?> GetPokemonInfoByDexAsync(int dexNumber);
         Task<string> GetPokemonNameByDexAsync(int dexNumber);
         int NormalizeDexNumber(int number);

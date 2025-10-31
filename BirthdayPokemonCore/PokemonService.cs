@@ -204,6 +204,34 @@ namespace BirthdayPokemonCore
             return (normalized, name);
         }
 
+        public async Task<(PokemonInfo? info, string steps)> GetBirthdayPokemonInfoAsync(DateOnly birthday, FormatType formatType)
+        {
+            int rawNumber = GetBirthdayNumber(birthday, formatType);
+            int normalizedDex = NormalizeDexNumber(rawNumber);
+            var pokemonInfo = await GetPokemonInfoByDexAsync(normalizedDex);
+            string explanation = GeneratePokemonInfoExplanation(birthday, formatType, rawNumber, normalizedDex, pokemonInfo);
+            return (pokemonInfo, explanation);
+        }
+
+        private static string GeneratePokemonInfoExplanation(DateOnly birthday, FormatType formatType, int rawNumber, int normalizedDex, PokemonInfo? pokemonInfo)
+        {
+            var explanation = new StringBuilder();
+            explanation.AppendLine($"Parsed date: {birthday:dd/MM/yyyy}");
+            explanation.AppendLine($"Using specified format: {formatType.ToString()}");
+            explanation.AppendLine($"Birthday number ({formatType}): {rawNumber}");
+            if (rawNumber > MaxDexNumber)
+            {
+                explanation.AppendLine($"Wrapped around Pokédex limit ({MaxDexNumber}): (({rawNumber}-1) % {MaxDexNumber}) + 1 = {normalizedDex}");
+            }
+            else
+            {
+                explanation.AppendLine($"Within Pokédex range: {normalizedDex}");
+            }
+
+            explanation.AppendLine($"Result -> #{normalizedDex}: {pokemonInfo?.Name}");
+            return explanation.ToString();
+        }
+
         public async Task<Dictionary<int, (string Name, int Count)>> GenerateBirthdayPokemonDistributionAsync()
         {
             var results = new Dictionary<int, (string Name, int Count)>();
