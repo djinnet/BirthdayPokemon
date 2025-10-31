@@ -1,0 +1,59 @@
+# Simple workflow for deploying a static website to GitHub Pages on master branch push using GitHub Actions for BirthdayPokemonWeb which is a blazor webassembly app with dotnet 9.0
+name: Deploy Static Website to GitHub Pages
+env:
+  PUBLISH_DIR: ./BirthdayPokemonWeb/bin/Release/net9.0/publish/wwwroot
+
+on:
+  push:
+    paths:
+		- 'BirthdayPokemonWeb/**'
+	branches:
+		- master
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+	environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+	runs-on: ubuntu-latest
+
+	steps:
+		- name: Checkout
+		  uses: actions/checkout@v4.2.2
+
+		- name: Get latest .NET SDK
+          uses: actions/setup-dotnet@v4.3.0
+          with:
+            dotnet-version: '9.0'
+
+	  - name: Build Blazor WebAssembly App
+		run: dotnet publish -c Release -o out BirthdayPokemonWeb/BirthdayPokemonWeb.csproj
+
+	 - name: Rewrite base href
+	   uses: SteveSandersonMS/ghaction-rewrite-base-href@v1.1.0
+	   with:
+		html_path: ${{ env.PUBLISH_DIR }}/index.html
+		base_href: '/'
+
+	- name: Setup Pages
+        uses: actions/configure-pages@v5.0.0
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          path: ${{ env.PUBLISH_DIR }}
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4.0.5
