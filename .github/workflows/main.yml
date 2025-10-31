@@ -1,15 +1,14 @@
-# Simple workflow for deploying a static website to GitHub Pages on master branch push using GitHub Actions for BirthdayPokemonWeb which is a blazor webassembly app with dotnet 9.0
 name: Deploy Static Website to GitHub Pages
+
 env:
-  PUBLISH_DIR: ./BirthdayPokemonWeb/bin/Release/net9.0/publish/wwwroot
+  PUBLISH_DIR: ./out/wwwroot
 
 on:
   push:
+    branches:
+      - master
     paths:
-		- 'BirthdayPokemonWeb/**'
-	branches:
-		- master
-
+      - 'BirthdayPokemonWeb/**'
   workflow_dispatch:
 
 permissions:
@@ -23,37 +22,38 @@ concurrency:
 
 jobs:
   deploy:
-	environment:
+    environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-	runs-on: ubuntu-latest
 
-	steps:
-		- name: Checkout
-		  uses: actions/checkout@v4.2.2
+    runs-on: ubuntu-latest
 
-		- name: Get latest .NET SDK
-          uses: actions/setup-dotnet@v4.3.0
-          with:
-            dotnet-version: '9.0'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-	  - name: Build Blazor WebAssembly App
-		run: dotnet publish -c Release -o out BirthdayPokemonWeb/BirthdayPokemonWeb.csproj
+      - name: Get latest .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0'
 
-	 - name: Rewrite base href
-	   uses: SteveSandersonMS/ghaction-rewrite-base-href@v1.1.0
-	   with:
-		html_path: ${{ env.PUBLISH_DIR }}/index.html
-		base_href: '/'
+      - name: Publish Blazor WebAssembly App
+        run: dotnet publish BirthdayPokemonWeb/BirthdayPokemonWeb.csproj -c Release -o out
 
-	- name: Setup Pages
-        uses: actions/configure-pages@v5.0.0
+      - name: Rewrite base href
+        uses: SteveSandersonMS/ghaction-rewrite-base-href@v1.1.0
+        with:
+          html_path: ${{ env.PUBLISH_DIR }}/index.html
+          base_href: '/'
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3.0.1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ env.PUBLISH_DIR }}
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4.0.5
+        uses: actions/deploy-pages@v4
