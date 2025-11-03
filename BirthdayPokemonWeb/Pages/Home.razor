@@ -1,13 +1,9 @@
 ﻿@page "/"
 
+
 <PageTitle>Find your Birthday Pokémon</PageTitle>
 
-
-
 <div class="pokemon-page">
-
-
-
     <div class="pokemon-card shadow">
 
         <h1 class="text-center mb-3">🎉 Find Your Birthday Pokémon! 🎉</h1>
@@ -24,12 +20,12 @@
             </p>
 
             <p class="small text-muted">
-                We are not saving any birth data. Your birth date is only used to determine your Pokémon. Also note that we do not uses year information for the calculation.
+                We are not saving any birth data. Your birth date is only used to determine your Pokémon. Also note that we do not uses year information for the standard calculation.
                 You can find the open source project here: <a class="github-link" href="https://github.com/djinnet/BirthdayPokemon">Github</a>
             </p>
 
             <DateInput TValue="DateOnly"
-            @bind-Value="@birthday"
+            @bind-Value="@Birthday"
             Placeholder="Select your birth date"
             Class="w-100" />
         </div>
@@ -38,7 +34,26 @@
             <Switch @bind-Value="MonthDayFormat"
             Label="Use Month-Day Format (MM/DD)?" />
             <p class="small text-muted mt-1">
-                Current format: <strong>@inputFormat</strong>
+                Current format: <strong>@InputFormat</strong>
+            </p>
+        </div>
+
+        <div class="format-toggle mb-4">
+            <p class="small text-muted">
+                This is the calculation method used to determine your Birthday Pokémon.
+                You can choose different methods to see how they affect the result.
+                Standard means the original calculation method which is calculated by taking the month and day of your birthday.
+                Seed means the calculation method which uses an mixure of your birth date and a "pseudo-random" seed value to determine your Pokémon.
+                Year means the calculation method which includes the year of your birth date in the calculation.
+            </p>
+            <InputSelect @bind-Value="@CurrentCalcuationType">
+                @foreach (var value in Enum.GetValues<EPokemonBirthdayCalculationType>())
+                {
+                    <option value="@value">@value</option>
+                }
+            </InputSelect>
+            <p class="small text-muted mt-1">
+                Current calculation: <strong>@(CurrentCalcuationType.ToString()) </strong>
             </p>
         </div>
 
@@ -51,7 +66,7 @@
             </Button>
         </div>
 
-        @if (isLoading)
+        @if (IsLoading)
         {
             <div class="pokeball-loader-container">
                 <div class="pokeball-loader"></div>
@@ -60,18 +75,18 @@
         }
         else
         {
-            @if (!string.IsNullOrEmpty(pokemonImageUrl))
+            @if (!string.IsNullOrEmpty(PokemonImageUrl))
             {
                 <div class="pokemon-result text-center mt-5">
                     <h3>Your Pokémon is:</h3>
 
-                    <img src="@pokemonImageUrl"
+                    <img src="@PokemonImageUrl"
                          alt="Pokemon Image"
                          class="pokemon-image shadow" />
 
                     <div class="mt-3 fs-4">
-                        <span class="fw-bold">#@pokedexNumber</span>
-                        <span>— @pokemonName</span>
+                        <span class="fw-bold">#@PokedexNumber</span>
+                        <span>— @PokemonName</span>
                     </div>
                 </div>
 
@@ -96,7 +111,5 @@
                 </p>
             }
         }
-        
-
     </div>
 </div>

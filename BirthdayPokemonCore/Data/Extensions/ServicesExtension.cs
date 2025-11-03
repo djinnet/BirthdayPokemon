@@ -1,7 +1,9 @@
-﻿using BirthdayPokemonCore.Repo;
+﻿using BirthdayPokemonCore.Interfaces;
+using BirthdayPokemonCore.Repo;
+using BirthdayPokemonCore.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BirthdayPokemonCore.Data
+namespace BirthdayPokemonCore.Data.Extensions
 {
     public static class ServicesExtension
     {

@@ -1,25 +1,39 @@
 ﻿using BirthdayPokemonCore;
+using BirthdayPokemonCore.Data.Enums;
 using BirthdayPokemonCore.Repo;
+using BirthdayPokemonCore.Services;
 
 var repo = new PokeAPIRepo();
 var service = new PokemonService(repo);
 
 while (true)
 {
+    Console.WriteLine("=== Birthday Pokémon Calculator ===");
+    Console.WriteLine("Type 'stats' to see distribution stats, 'statscsv' to export CSV, or enter your birthday to find your Pokémon.");
+
     Console.Write("Enter your birthday (MM/DD or DD/MM): ");
     string? input = Console.ReadLine();
 
     if (string.IsNullOrWhiteSpace(input))
         break;
 
-    Console.Write("Is this MM/DD format or DD/MM format? (Enter 'M' for MM/DD, 'D' for DD/MM, or press Enter for default DD/MM): ");
+    Console.Write("Is this birthday in MM/DD format or DD/MM format? (Enter 'M' for MM/DD, 'D' for DD/MM, or press Enter for default DD/MM): ");
     string? formatInput = Console.ReadLine();
 
     var formatType = formatInput?.Equals("M", StringComparison.OrdinalIgnoreCase) == true
-        ? BirthdayPokemonCore.Data.FormatType.MonthDay
-        : BirthdayPokemonCore.Data.FormatType.DayMonth;
+        ? EFormatType.MonthDay
+        : EFormatType.DayMonth;
 
-
+    //Which calculation type to use
+    Console.WriteLine("Select calculation type: (1) Standard (2) Seed (3) Year");
+    string? calcInput = Console.ReadLine();
+    var calculationType = calcInput switch
+    {
+        "1" => EPokemonBirthdayCalculationType.Standard,
+        "2" => EPokemonBirthdayCalculationType.Seed,
+        "3" => EPokemonBirthdayCalculationType.YearBased,
+        _ => EPokemonBirthdayCalculationType.Standard,
+    };
 
     try
     {
@@ -29,7 +43,7 @@ while (true)
             var stats = await service.GenerateBirthdayPokemonDistributionAsync();
 
             Console.WriteLine("\nTop 10 Most Common Birthday Pokémon:");
-            foreach (var entry in stats.Take(10))
+            foreach (var entry in stats.Dictionary.Take(10))
             {
                 Console.WriteLine($"#{entry.Key}: {entry.Value.Name} ({entry.Value.Count} birthdays)");
             }
@@ -59,7 +73,7 @@ while (true)
 
     try
     {
-        string explanation = await service.ExplainBirthdayPokemonAsync(input, formatType);
+        string explanation = await service.ExplainBirthdayPokemonAsync(input, formatType, calculationType);
         Console.WriteLine("\n=== Birthday Pokémon Analysis ===");
         Console.WriteLine(explanation);
     }

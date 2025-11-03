@@ -1,4 +1,6 @@
-﻿using PokeApiNet;
+﻿using BirthdayPokemonCore.Interfaces;
+using BirthdayPokemonCore.Models;
+using PokeApiNet;
 using System.Collections.Concurrent;
 using System.Globalization;
 
@@ -54,6 +56,4 @@ namespace BirthdayPokemonCore.Repo
             }
         }
     }
-
-    public record PokemonInfo(string Name, string ImageUrl, int DexNumber);
 }

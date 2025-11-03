@@ -1,6 +1,6 @@
-﻿using BirthdayPokemonCore;
-using BirthdayPokemonCore.Data;
+﻿using BirthdayPokemonCore.Data.Enums;
 using BirthdayPokemonCore.Repo;
+using BirthdayPokemonCore.Services;
 using BirthdayPokemonTestXunit.Tests;
 
 namespace BirthdayPokemonTestXunit
@@ -26,7 +26,7 @@ namespace BirthdayPokemonTestXunit
             int raw = _service.GetBirthdayNumber(birthday);
             Assert.Equal(expectedRaw, raw);
 
-            int normalized = _service.NormalizeDexNumber(raw);
+            int normalized = _service.CalculateNormalizedBirthdayNumber(birthday, EPokemonBirthdayCalculationType.Standard);
             Assert.Equal(expectedDex, normalized);
 
             string name = await _service.GetPokemonNameByDexAsync(normalized);
@@ -43,8 +43,7 @@ namespace BirthdayPokemonTestXunit
         public void GetBirthdayPokemon_WorksForAllEdgeCases(string date, int expectedDex)
         {
             var birthday = DateOnly.Parse(date);
-            var raw = _service.GetBirthdayNumber(birthday);
-            var normalized = _service.NormalizeDexNumber(raw);
+            var normalized = _service.CalculateNormalizedBirthdayNumber(birthday, EPokemonBirthdayCalculationType.Standard);
             Assert.Equal(expectedDex, normalized);
         }
 
@@ -63,19 +62,19 @@ namespace BirthdayPokemonTestXunit
             var service = new PokemonService(repo);
 
             //inputs
-            var format = FormatType.DayMonth;
-            string date = "31/03/2025";
+            var format = EFormatType.DayMonth;
 
             // tests
-            bool isDayMonth = PokemonDateFormat.IsDayMonthFormat(format);
-            DateOnly birthday = date.ParseDateWithFormat(isDayMonth);
-            var (DexNumber, Name) = await service.GetBirthdayPokemonAsync(birthday, format);
+            DateOnly birthday = new(2025, 03, 31);
+            var pokemon = await service.GetBirthdayPokemonInfoAsync(birthday, format, EPokemonBirthdayCalculationType.Standard);
+
+            Assert.NotNull(pokemon);
 
             // results
-            Assert.InRange(DexNumber, 1, 1025);
-            Assert.False(string.IsNullOrWhiteSpace(Name));
+            Assert.InRange(pokemon.Info!.DexNumber, 1, 1025);
+            Assert.False(string.IsNullOrWhiteSpace(pokemon.Info.Name));
 
-            Console.WriteLine($"[LIVE TEST] 31/03/2025 -> #{DexNumber}: {Name}");
+            Console.WriteLine($"[LIVE TEST] 31/03/2025 -> #{pokemon.Info.DexNumber}: {pokemon.Info.Name}");
         }
 
         [Fact]

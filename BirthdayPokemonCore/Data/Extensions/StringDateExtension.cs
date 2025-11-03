@@ -1,4 +1,6 @@
-﻿namespace BirthdayPokemonCore.Data
+﻿using BirthdayPokemonCore.Data.Enums;
+
+namespace BirthdayPokemonCore.Data.Extensions
 {
     public static class StringDateExtension
     {
@@ -65,7 +67,7 @@
                 return new DateOnly(year, first, second);
         }
 
-        public static DateOnly ParseDateWithFormat(this string input, FormatType formatType)
+        public static DateOnly ParseDateWithFormat(this string input, EFormatType formatType)
         {
             string[] parts = input.Split('/', '-', '.', ' ');
             if (parts.Length < 2)
@@ -75,25 +77,25 @@
             int second = int.Parse(parts[1]);
             int year = parts.Length >= 3 ? int.Parse(parts[2]) : DateTime.Now.Year;
 
-            if (PokemonDateFormat.IsDayMonthFormat(formatType))
+            if (PokemonDateFormatExtension.IsDayMonthFormat(formatType))
                 return new DateOnly(year, second, first);
             else
                 return new DateOnly(year, first, second);
         }
 
-        public static FormatType ToFormatType(this string input)
+        public static EFormatType ToFormatType(this string input)
         {
             try
             {
                 string[] parts = input.Split('/', '-', '.', ' ');
                 int first = int.Parse(parts[0]);
                 int second = int.Parse(parts[1]);
-                FormatType formatUsed = first > 12 ? FormatType.DayMonth : FormatType.MonthDay;
+                EFormatType formatUsed = first > 12 ? EFormatType.DayMonth : EFormatType.MonthDay;
                 return formatUsed;
             }
             catch (Exception)
             {
-                return FormatType.MonthDay;
+                return EFormatType.MonthDay;
             }
         }
 

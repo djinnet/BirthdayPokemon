@@ -1,4 +1,5 @@
-﻿using BirthdayPokemonCore.Repo;
+﻿using BirthdayPokemonCore.Interfaces;
+using BirthdayPokemonCore.Models;
 
 namespace BirthdayPokemonTestXunit.Tests
 {
