@@ -1,5 +1,5 @@
 self.assetsManifest = {
-  "version": "CKoizgO8",
+  "version": "kK22pLiP",
   "assets": [
     {
       "hash": "sha256-ZPeuO00lwB/HZ5xMFD41N+mXX9EfQlyf7rSkdO43bhU=",
@@ -42,12 +42,12 @@ self.assetsManifest = {
       "url": "_content/Blazor.Bootstrap/pdfjs-4.0.379.worker.min.js"
     },
     {
-      "hash": "sha256-jmUnVerPAI+1EftbySkq+ax/bQZZy5McCjTdnJADbtM=",
-      "url": "_framework/BirthdayPokemonCore.u17nz5qd9u.wasm"
+      "hash": "sha256-GBEJfagwSjW6RYk6XziTGN+C35MB1ub1fy2fDBr8fVE=",
+      "url": "_framework/BirthdayPokemonCore.welmlxsng0.wasm"
     },
     {
-      "hash": "sha256-VkhYRs3wMoGoiMxa7U0rvMAb1ZgjWICCJ02EbMUEnnQ=",
-      "url": "_framework/BirthdayPokemonWeb.i29nq4o7ty.wasm"
+      "hash": "sha256-ky9i+cdNRudwu6cf1poh3Ra0wSjCVF5gq2RE2S+xJUQ=",
+      "url": "_framework/BirthdayPokemonWeb.r23oiq9qdq.wasm"
     },
     {
       "hash": "sha256-JvZh7RjGQpT7CC6gfoLZbKPPkhcor/rhKKpkCt/2lfU=",
@@ -214,8 +214,8 @@ self.assetsManifest = {
       "url": "_framework/System.ObjectModel.7m6n1tcre6.wasm"
     },
     {
-      "hash": "sha256-ZfFLSbnbIIbrr2ofenNTl4F6M4r3VXO8UJbdJ8/6fwc=",
-      "url": "_framework/System.Private.CoreLib.zusqimxygp.wasm"
+      "hash": "sha256-t3DU0xyz2ItNRuJsF1NdZD3aScZ7zyB1q8lXxCrtL/s=",
+      "url": "_framework/System.Private.CoreLib.7grzza51e6.wasm"
     },
     {
       "hash": "sha256-3PZ0wm/k51Mm2kuZdG0r2Ls6Jpm3kgdZ1ayAHHkAf8I=",
@@ -250,7 +250,7 @@ self.assetsManifest = {
       "url": "_framework/System.Threading.6wxzpv4ki1.wasm"
     },
     {
-      "hash": "sha256-xR5B7uCPD4B0WjzrUQx4mI4NBcTq/fKeAv+mBeflGaI=",
+      "hash": "sha256-12bwQg9crGMZ/nAE7Z7Hv796ZqFrGEpzOiw7EZVRE0Y=",
       "url": "_framework/blazor.boot.json"
     },
     {
