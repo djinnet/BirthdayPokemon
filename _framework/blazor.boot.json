@@ -1,10 +1,10 @@
 {
   "mainAssemblyName": "BirthdayPokemonWeb",
   "resources": {
-    "hash": "sha256-nGAoRHAf/ZdMzsn7bs2Kp61eZZQShNt7iwJNR/+cerA=",
+    "hash": "sha256-5wEV7smhtgiFLH6JPvhkRtHl3ilwoWY3cgsPh5mNjno=",
     "fingerprinting": {
-      "BirthdayPokemonCore.welmlxsng0.wasm": "BirthdayPokemonCore.wasm",
-      "BirthdayPokemonWeb.r23oiq9qdq.wasm": "BirthdayPokemonWeb.wasm",
+      "BirthdayPokemonCore.ln5lwrmg7w.wasm": "BirthdayPokemonCore.wasm",
+      "BirthdayPokemonWeb.mul6wj716x.wasm": "BirthdayPokemonWeb.wasm",
       "BlazorBootstrap.ym6tnrklwx.wasm": "BlazorBootstrap.wasm",
       "Microsoft.AspNetCore.Components.Forms.uyuitmimef.wasm": "Microsoft.AspNetCore.Components.Forms.wasm",
       "Microsoft.AspNetCore.Components.142jr2gqgz.wasm": "Microsoft.AspNetCore.Components.wasm",
@@ -83,8 +83,8 @@
       "System.Runtime.InteropServices.JavaScript.it9v611w20.wasm": "sha256-dr2zPg+11BQOd27TZPxcs18PqUREGUfAtTD9nRdz7sw="
     },
     "assembly": {
-      "BirthdayPokemonCore.welmlxsng0.wasm": "sha256-GBEJfagwSjW6RYk6XziTGN+C35MB1ub1fy2fDBr8fVE=",
-      "BirthdayPokemonWeb.r23oiq9qdq.wasm": "sha256-ky9i+cdNRudwu6cf1poh3Ra0wSjCVF5gq2RE2S+xJUQ=",
+      "BirthdayPokemonCore.ln5lwrmg7w.wasm": "sha256-HyQnUcMBNlrI1SOLQGgn3kxPRVC+832vLeg5XplhNkM=",
+      "BirthdayPokemonWeb.mul6wj716x.wasm": "sha256-4k8LDR8w6re09nnXtnnZV7C16ZkXU/e6sA4AnqgbNTo=",
       "BlazorBootstrap.ym6tnrklwx.wasm": "sha256-JvZh7RjGQpT7CC6gfoLZbKPPkhcor/rhKKpkCt/2lfU=",
       "Microsoft.AspNetCore.Components.Forms.uyuitmimef.wasm": "sha256-up2+eLHI6mfOpci3zGDaCubQRc39XG+LhdCNi3jVAZI=",
       "Microsoft.AspNetCore.Components.142jr2gqgz.wasm": "sha256-j6vZzDseA0vWV0yP37UtQt4Oi421GN4aAHvV0R7cIi8=",
