@@ -40,11 +40,11 @@
 
         <div class="format-toggle mb-4">
             <p class="small text-muted">
-                This is the calculation method used to determine your Birthday Pokémon.
-                You can choose different methods to see how they affect the result.
-                Standard means the original calculation method which is calculated by taking the month and day of your birthday.
-                Seed means the calculation method which uses an mixure of your birth date and a "pseudo-random" seed value to determine your Pokémon.
-                Year means the calculation method which includes the year of your birth date in the calculation.
+                This is the calculation method used to determine your Birthday Pokémon. <br />
+                You can choose different methods to see how they affect the result. <br />
+                <strong>Standard</strong> means the original calculation method which is calculated by taking the month and day of your birthday. <br />
+                <strong>Seed</strong> means the calculation method which uses an mixure of your birth date and a "pseudo-random" seed value to determine your Pokémon. <br />
+                <strong>Year</strong> means the calculation method which includes the year of your birth date in the calculation.
             </p>
             <InputSelect @bind-Value="@CurrentCalcuationType">
                 @foreach (var value in Enum.GetValues<EPokemonBirthdayCalculationType>())
