@@ -77,7 +77,7 @@ namespace BirthdayPokemonCore.Data.Extensions
             int second = int.Parse(parts[1]);
             int year = parts.Length >= 3 ? int.Parse(parts[2]) : DateTime.Now.Year;
 
-            if (PokemonDateFormatExtension.IsDayMonthFormat(formatType))
+            if (formatType.IsDayMonthFormat())
                 return new DateOnly(year, second, first);
             else
                 return new DateOnly(year, first, second);
