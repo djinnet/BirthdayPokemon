@@ -1,5 +1,5 @@
 self.assetsManifest = {
-  "version": "Mw5o1bKM",
+  "version": "nqgH/L6+",
   "assets": [
     {
       "hash": "sha256-gmd5QGMmKAJyEOEmTthfYM6Ge8HKhS+jeBIgsoxLxrQ=",
@@ -66,16 +66,16 @@ self.assetsManifest = {
       "url": "_content/Blazor.Bootstrap/pdfjs-4.0.379.worker.min.js"
     },
     {
-      "hash": "sha256-AMbYrpPUjzs+t0InYv9tDWWzVmk+anXpIaRsc/VljZA=",
-      "url": "_framework/BirthdayPokemonCore.8eg4a4o9d1.wasm"
+      "hash": "sha256-bWChWfvuHn0UjRtQTqentxIYDnZFsySb0brI8N4tRng=",
+      "url": "_framework/BirthdayPokemonCore.9pinaqjmsq.wasm"
     },
     {
-      "hash": "sha256-OpVwWgt8010iKOjekRbUCXh+YgqiX850pAZ1xASgJv8=",
-      "url": "_framework/BirthdayPokemonRazorCore.uv4e1p2bcf.wasm"
+      "hash": "sha256-o9thEInrUezhAfnALbA+gNXX2lqVdvDwMxkIdKb70P8=",
+      "url": "_framework/BirthdayPokemonRazorCore.hzeeh0v1zj.wasm"
     },
     {
-      "hash": "sha256-poQ9dLDm1+xj859nNUeFJ+JoD6bqWDaY3Beq1Gg08Sc=",
-      "url": "_framework/BirthdayPokemonWeb.uud6x2fo2f.wasm"
+      "hash": "sha256-+kDE2ug3AdkXv0BmOpgSRw/kF7wRTU/4rq/60taD2yQ=",
+      "url": "_framework/BirthdayPokemonWeb.2m6mmk959t.wasm"
     },
     {
       "hash": "sha256-JvZh7RjGQpT7CC6gfoLZbKPPkhcor/rhKKpkCt/2lfU=",
@@ -286,7 +286,7 @@ self.assetsManifest = {
       "url": "_framework/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-d/LDhkO/a3+yLKrajZkbD4nn2TpKvis5A5tlHh79q70=",
+      "hash": "sha256-RBUSqNT24/XQu6xoOLyDAwDBH1ZWo1+fXJxpY2c4sts=",
       "url": "_framework/dotnet.js"
     },
     {
