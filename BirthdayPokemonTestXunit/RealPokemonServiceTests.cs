@@ -16,8 +16,9 @@ namespace BirthdayPokemonTestXunit
 
         public RealPokemonServiceTests()
         {
+            InMemoryLogger<PokeAPIRepo> Repologger = new();
             // use the real repo for testing
-            var realRepo = new PokeAPIRepo();
+            var realRepo = new PokeAPIRepo(Repologger);
             //and use in-memory logger
             InMemoryLogger<PokemonService> logger = new();
             _service = new PokemonService(realRepo, logger);

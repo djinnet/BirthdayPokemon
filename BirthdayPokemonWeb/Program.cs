@@ -1,6 +1,6 @@
-using BirthdayPokemonCore.Data.Extensions;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using BirthdayPokemonCore.Data.Extensions;
 
 namespace BirthdayPokemonWeb
 {

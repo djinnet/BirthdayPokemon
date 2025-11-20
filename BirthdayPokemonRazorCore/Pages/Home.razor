@@ -1,6 +1,5 @@
 ﻿@page "/"
 
-
 <PageTitle>Find your Birthday Pokémon</PageTitle>
 
 <div class="pokemon-page">
@@ -27,7 +26,7 @@
             <DateInput TValue="DateOnly"
             @bind-Value="@Birthday"
             Placeholder="Select your birth date"
-            Class="w-100" />
+            Class="w-100" /> 
         </div>
 
         <div class="format-toggle mb-4">
@@ -46,7 +45,7 @@
                 <strong>Seed</strong> means the calculation method which uses an mixure of your birth date and a "pseudo-random" seed value to determine your Pokémon. <br />
                 <strong>Year</strong> means the calculation method which includes the year of your birth date in the calculation.
             </p>
-            <InputSelect @bind-Value="@CurrentCalcuationType">
+            <InputSelect class="form-select pickCalcType" @bind-Value="@CurrentCalcuationType">
                 @foreach (var value in Enum.GetValues<EPokemonBirthdayCalculationType>())
                 {
                     <option value="@value">@value</option>
