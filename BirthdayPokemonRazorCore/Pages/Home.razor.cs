@@ -1,8 +1,9 @@
 ﻿using BirthdayPokemonCore.Data.Enums;
 using BirthdayPokemonCore.Interfaces;
 using Microsoft.AspNetCore.Components;
+using BirthdayPokemonCore.Models;
 
-namespace BirthdayPokemonWeb.Pages
+namespace BirthdayPokemonRazorCore.Pages
 {
     public partial class Home
     {
@@ -33,6 +34,12 @@ namespace BirthdayPokemonWeb.Pages
             Birthday = DateOnly.FromDateTime(DateTime.Today);
         }
 
+        //Onclick handler
+        public void OnSelectCalculationType(EPokemonBirthdayCalculationType type)
+        {
+            CurrentCalcuationType = type;
+        }
+
         //onclick handler
         public async Task OnGetBirthdayPokemonAsync()
         {
@@ -42,10 +49,17 @@ namespace BirthdayPokemonWeb.Pages
             try
             {
                 EFormatType formatUsed = MonthDayFormat ? EFormatType.MonthDay : EFormatType.DayMonth;
-                var pokemonInfo = await PokemonService.GetBirthdayPokemonInfoAsync(Birthday, formatUsed, CurrentCalcuationType);
+                PokemonInfoWithSteps? pokemonInfo = await PokemonService.GetBirthdayPokemonInfoAsync(Birthday, formatUsed, CurrentCalcuationType);
+                
+                if(pokemonInfo == null) {
+                    ErrorMessage = "Pokémon not found.";
+                    IsError = true;
+                    return;
+                }
+
                 if (pokemonInfo.Info == null || string.IsNullOrEmpty(pokemonInfo.Info.ImageUrl))
                 {
-                    ErrorMessage = "Pokémon not found.";
+                    ErrorMessage = "Pokémon info not found.";
                     IsError = true;
                     return;
                 }

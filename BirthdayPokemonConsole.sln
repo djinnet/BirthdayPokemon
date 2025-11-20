@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirthdayPokemonConsole", "BirthdayPokemonConsole\BirthdayPokemonConsole.csproj", "{274FE6BB-CA29-408B-8C9E-F4206D4289E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirthdayPokemonCore", "BirthdayPokemonCore\BirthdayPokemonCore.csproj", "{89B13A7F-2991-4731-905B-1E7DDCCEBB5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirthdayPokemonTestXunit", "BirthdayPokemonTestXunit\BirthdayPokemonTestXunit.csproj", "{6364656A-CF7B-4611-A46A-35DC4E2FD39B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirthdayPokemonRazorCore", "BirthdayPokemonRazorCore\BirthdayPokemonRazorCore.csproj", "{CE07279C-EDFD-4E8F-97BE-D212DCEE2A07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirthdayPokemonWeb", "BirthdayPokemonWeb\BirthdayPokemonWeb.csproj", "{51965712-81D2-4899-85FF-4EC5B3346711}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirthdayPokemonMAUI", "BirthdayPokemonMAUI\BirthdayPokemonMAUI.csproj", "{0A2E5E9E-B07F-4D87-ACD8-161E8655CCD0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{274FE6BB-CA29-408B-8C9E-F4206D4289E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{274FE6BB-CA29-408B-8C9E-F4206D4289E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{274FE6BB-CA29-408B-8C9E-F4206D4289E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{274FE6BB-CA29-408B-8C9E-F4206D4289E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89B13A7F-2991-4731-905B-1E7DDCCEBB5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89B13A7F-2991-4731-905B-1E7DDCCEBB5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89B13A7F-2991-4731-905B-1E7DDCCEBB5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89B13A7F-2991-4731-905B-1E7DDCCEBB5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6364656A-CF7B-4611-A46A-35DC4E2FD39B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6364656A-CF7B-4611-A46A-35DC4E2FD39B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6364656A-CF7B-4611-A46A-35DC4E2FD39B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6364656A-CF7B-4611-A46A-35DC4E2FD39B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE07279C-EDFD-4E8F-97BE-D212DCEE2A07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE07279C-EDFD-4E8F-97BE-D212DCEE2A07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE07279C-EDFD-4E8F-97BE-D212DCEE2A07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE07279C-EDFD-4E8F-97BE-D212DCEE2A07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51965712-81D2-4899-85FF-4EC5B3346711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51965712-81D2-4899-85FF-4EC5B3346711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51965712-81D2-4899-85FF-4EC5B3346711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51965712-81D2-4899-85FF-4EC5B3346711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A2E5E9E-B07F-4D87-ACD8-161E8655CCD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A2E5E9E-B07F-4D87-ACD8-161E8655CCD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A2E5E9E-B07F-4D87-ACD8-161E8655CCD0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0A2E5E9E-B07F-4D87-ACD8-161E8655CCD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A2E5E9E-B07F-4D87-ACD8-161E8655CCD0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8D5154E-9BFC-4573-B222-80A092AC2D2B}
+	EndGlobalSection
+EndGlobal

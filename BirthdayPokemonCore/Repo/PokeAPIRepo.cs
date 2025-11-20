@@ -1,5 +1,6 @@
 ﻿using BirthdayPokemonCore.Interfaces;
 using BirthdayPokemonCore.Models;
+using Microsoft.Extensions.Logging;
 using PokeApiNet;
 using System.Collections.Concurrent;
 using System.Globalization;
@@ -9,28 +10,14 @@ namespace BirthdayPokemonCore.Repo
     public class PokeAPIRepo : IPokemonRepository
     {
         private readonly PokeApiClient _client = new();
-        private readonly ConcurrentDictionary<int, string> _cache = new();
 
         private readonly ConcurrentDictionary<int, PokemonInfo> _cachePokemonInfo = new();
 
-        public async Task<string> GetPokemonNameAsync(int dexNumber)
-        {
-            if (_cache.TryGetValue(dexNumber, out string? cached))
-                return cached;
+        private ILogger<PokeAPIRepo> _logger { get; }
 
-            try
-            {
-                var pokemon = await _client.GetResourceAsync<Pokemon>(dexNumber);
-                string name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(pokemon.Name);
-                _cache[dexNumber] = name;
-                return name;
-            }
-            catch
-            {
-                string fallback = $"Pokémon #{dexNumber}";
-                _cache[dexNumber] = fallback;
-                return fallback;
-            }
+        public PokeAPIRepo(ILogger<PokeAPIRepo> logger)
+        {
+            _logger = logger;
         }
 
         public async Task<PokemonInfo> GetPokemonInfoAsync(int dexNumber)
@@ -40,19 +27,21 @@ namespace BirthdayPokemonCore.Repo
 
             try
             {
-                var pokemon = await _client.GetResourceAsync<Pokemon>(dexNumber);
+                var pokemon = await _client.GetResourceAsync<Pokemon>(dexNumber) ?? throw new Exception($"Pokémon with dex number {dexNumber} not found.");
+                if (string.IsNullOrEmpty(pokemon.Name))
+                {
+                    throw new Exception($"Pokémon with dex number {dexNumber} has no name.");
+                }
                 string name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(pokemon.Name);
                 string imageUrl = pokemon.Sprites.Other.Home.FrontDefault;
-                var info = new PokemonInfo(name, imageUrl, dexNumber);
+                PokemonInfo info = new(name, imageUrl, dexNumber);
                 _cachePokemonInfo[dexNumber] = info;
                 return info;
             }
-            catch
+            catch(Exception ex)
             {
-                string fallback = $"Pokémon #{dexNumber}";
-                var info = new PokemonInfo(fallback, string.Empty, dexNumber);
-                _cachePokemonInfo[dexNumber] = info;
-                return info;
+                _logger.LogError(ex, "Error fetching Pokémon info for dex number {DexNumber}", dexNumber);
+                return new PokemonInfo($"Pokémon #{dexNumber}", string.Empty, dexNumber);
             }
         }
     }
